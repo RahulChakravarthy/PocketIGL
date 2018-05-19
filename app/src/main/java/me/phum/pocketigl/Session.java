@@ -1,5 +1,6 @@
 package me.phum.pocketigl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Session {
@@ -11,6 +12,7 @@ public class Session {
     Session() {
         this.sessionCode = generateSessionCode();
         this.numUsers = 0;
+        users = new ArrayList<Integer>();
     }
 
     /*
@@ -34,6 +36,10 @@ public class Session {
             builder.append(ALPHA_NUMERIC_STRING.charAt(character));
         }
         return builder.toString();
+    }
+
+    public String getSessionCode() {
+        return this.sessionCode;
     }
 
     /*
