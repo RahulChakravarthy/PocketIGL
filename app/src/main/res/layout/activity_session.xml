@@ -1,72 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primaryColor"
+    android:background="@color/primaryDarkColor"
+    android:orientation="vertical"
     tools:context=".SessionActivity">
-
-    <Button
-        android:id="@+id/joinButton"
-        android:layout_width="377dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:fontFamily="@font/titillium_web"
-        android:text="Join"
-        android:textAppearance="@style/TextAppearance.AppCompat"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.505"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sessionCodeInput"
-        app:layout_constraintVertical_bias="0.009" />
-
-    <Button
-        android:id="@+id/createButton"
-        android:layout_width="377dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:fontFamily="@font/titillium_web"
-        android:text="Create new session"
-        android:textAppearance="@style/TextAppearance.AppCompat"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/joinButton"
-        app:layout_constraintVertical_bias="0.0"
-        tools:textAllCaps="false" />
-
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
     <EditText
         android:id="@+id/sessionCodeInput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:ems="10"
         android:fontFamily="@font/titillium_web"
         android:gravity="center_horizontal"
-        android:inputType="textCapCharacters|textPersonName"
         android:hint="Session Code"
+        android:inputType="textCapCharacters|textPersonName"
         android:textAppearance="@style/TextAppearance.AppCompat"
-        android:textColor="@color/primaryTextColor"
+        android:textColor="@color/secondaryTextColor"
+        android:textColorHint="@color/secondaryTextColor"
         android:textSize="30sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.102" />
+        android:maxLength="4"
+        android:background="@android:color/transparent"
+        android:textStyle="bold" />
 
-</android.support.constraint.ConstraintLayout>
+    <Button
+        android:id="@+id/joinButton"
+        style="@style/DefaultButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Join"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textSize="24sp"
+        android:layout_margin="16dp"
+        android:padding="8dp"/>
+
+    <Button
+        android:id="@+id/createButton"
+        style="@style/DefaultButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Create New Session"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textSize="24sp"
+        android:layout_margin="16dp"
+        android:padding="8dp"/>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.5"/>
+
+</LinearLayout>
