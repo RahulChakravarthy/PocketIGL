@@ -18,9 +18,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private ArrayList<String> UserNames = new ArrayList<>();
     private Context mContext;
 
-    public RecyclerViewAdapter(ArrayList<String> userNames, Context mContext) {
+    public RecyclerViewAdapter(ArrayList<String> userNames, Context context) {
         UserNames = userNames;
-        this.mContext = mContext;
+        mContext = context;
     }
 
     @NonNull
@@ -39,14 +39,15 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         holder.user.setOnClickListener(new View.OnClickListener(){
             @Override
-
-
+            public void onClick(View view){
+                //Patrick carries right here
+            }
         });
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return UserNames.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
