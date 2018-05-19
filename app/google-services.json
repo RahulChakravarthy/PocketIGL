@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1065293666870",
+    "firebase_url": "https://pocketigl.firebaseio.com",
+    "project_id": "pocketigl",
+    "storage_bucket": "pocketigl.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1065293666870:android:f6c346ece4b587db",
+        "android_client_info": {
+          "package_name": "me.phum.pocketigl"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1065293666870-3ftgaped11j2q3bs3orhju5cahir7jr6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQyFgIALc1yR8vAjXMp3TCJJa1WFlo_3E"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
