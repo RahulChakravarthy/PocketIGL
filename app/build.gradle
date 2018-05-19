@@ -9,7 +9,7 @@ android {
         config {
             keyAlias 'androiddebugkey'
             keyPassword 'android'
-            storeFile file('C:/Users/patri/Documents/GitHub/PocketIGL/debug.keystore')
+            storeFile file('../debug.keystore')
             storePassword 'android'
         }
     }
