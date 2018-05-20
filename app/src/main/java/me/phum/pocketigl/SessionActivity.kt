@@ -23,7 +23,7 @@ class SessionActivity : AppCompatActivity() {
         }
 
         //Uncomment the section below to navigate to the MapActivity using the 'Create New Section' button
-/*        val button1 = findViewById<Button>(R.id.createButton)
+        val button1 = findViewById<Button>(R.id.createButton)
 
         button1.setOnClickListener(object: View.OnClickListener {
             override fun onClick(view: View): Unit {
@@ -31,16 +31,17 @@ class SessionActivity : AppCompatActivity() {
                 val intent = Intent(context, MapActivity::class.java);
                 startActivity(intent);
             }
-        })*/
+        })
 
         val database = FirebaseDatabase.getInstance()
         val ref = database.getReference("pocketigl").child("sessions")
 
+        /*
         createButton.setOnClickListener {
             val session = Session()
             ref.child(session.sessionCode).setValue(session)
             Snackbar.make(root, "Session code: " + session.sessionCode, Snackbar.LENGTH_LONG).show()
-        }
+        }*/
     }
 
 }
