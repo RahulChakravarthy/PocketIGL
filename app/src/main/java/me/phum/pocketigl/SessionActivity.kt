@@ -51,7 +51,7 @@ class SessionActivity : AppCompatActivity(), LobbyFragment.Delegate {
                     override fun onDataChange(snapshot: DataSnapshot?) {
                         val session = snapshot!!.child(currentSession)
                         if(session.exists()) {
-                            addUser("test");
+                            addUser(FirebaseAuth.getInstance().currentUser!!.displayName.toString(), currentSession, "player")
                             Snackbar.make(root, "Joined session", Snackbar.LENGTH_SHORT).show()
                             joinSession(currentSession)
                         } else {
@@ -82,13 +82,14 @@ class SessionActivity : AppCompatActivity(), LobbyFragment.Delegate {
             Snackbar.make(root, "Session code: " + session.sessionCode, Snackbar.LENGTH_LONG).show()
             joinSession(session.sessionCode)
             sessionCodeInput.setText(session.sessionCode)
+            addUser(FirebaseAuth.getInstance().currentUser!!.displayName.toString(), currentSession, "admin")
         }
     }
 
-    fun addUser(username: String) {
-        val ref = FirebaseDatabase.getInstance().getReference("pocketigl").child("sessions").child(currentSession).child("users")
+    fun addUser(username: String, sessionId: String, role: String) {
+        val ref = FirebaseDatabase.getInstance().getReference("pocketigl").child("sessions").child(sessionId).child("users")
         val update = HashMap<String, String>()
-        update.put("name", "malwan")
+        update.put(username, role)
         ref.updateChildren(update as Map<String, String>)
     }
 
