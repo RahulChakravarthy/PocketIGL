@@ -14,4 +14,13 @@
         <item name="android:fontFamily">@font/titillium_web</item>
     </style>
 
+    <style name="DefaultTextViewStyle">
+        <item name="android:textColor">@color/secondaryTextColor</item>
+        <item name="android:fontFamily">@font/titillium_web</item>
+    </style>
+
+    <style name="HeaderTextViewStyle" parent="DefaultTextViewStyle">
+        <item name="android:textSize">24sp</item>
+    </style>
+
 </resources>
