@@ -16,7 +16,6 @@ import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.activity_session.*
 import me.phum.pocketigl.lobby.LobbyFragment
 
-
 class SessionActivity : AppCompatActivity(), LobbyFragment.Delegate {
     override fun onStartSession(sessionCode: String) {
         startActivity(Intent(this, MapActivity::class.java))
@@ -52,6 +51,7 @@ class SessionActivity : AppCompatActivity(), LobbyFragment.Delegate {
                     override fun onDataChange(snapshot: DataSnapshot?) {
                         val session = snapshot!!.child(currentSession)
                         if(session.exists()) {
+                            addUser("test");
                             Snackbar.make(root, "Joined session", Snackbar.LENGTH_SHORT).show()
                             joinSession(currentSession)
                         } else {
@@ -83,6 +83,13 @@ class SessionActivity : AppCompatActivity(), LobbyFragment.Delegate {
             joinSession(session.sessionCode)
             sessionCodeInput.setText(session.sessionCode)
         }
+    }
+
+    fun addUser(username: String) {
+        val ref = FirebaseDatabase.getInstance().getReference("pocketigl").child("sessions").child(currentSession).child("users")
+        val update = HashMap<String, String>()
+        update.put("name", "malwan")
+        ref.updateChildren(update as Map<String, String>)
     }
 
     fun joinSession(sessionId: String) {
