@@ -24,4 +24,13 @@
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@android:drawable/screen_background_light" />
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="371dp"
+        android:layout_height="536dp"
+        android:visibility="visible"
+        app:srcCompat="@android:drawable/ic_menu_edit"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="16dp" />
+
 </android.support.constraint.ConstraintLayout>
