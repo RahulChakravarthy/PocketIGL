@@ -35,6 +35,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
+        Log.d(TAG, "onBindViewHolder: called.");
         holder.USER.setText(UserNames.get(position));
         holder.USER.setOnClickListener(new View.OnClickListener(){
             @Override
