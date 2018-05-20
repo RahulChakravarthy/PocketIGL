@@ -36,6 +36,7 @@ class LobbyFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private lateinit var sessionCode: String
     private var delegate : Delegate? = null
+    var userList = ArrayList<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,8 +70,10 @@ class LobbyFragment : Fragment() {
             }
 
             override fun onDataChange(snapshot: DataSnapshot?) {
-                val users = snapshot!!.child(sessionCode).child("users")
-                println(users)
+                val users = snapshot!!.child(sessionCode).child("users").children
+                users.forEach {
+                    userList.add(it.value.toString())
+                }
             }
         })
     }

@@ -87,9 +87,9 @@ class SessionActivity : AppCompatActivity(), LobbyFragment.Delegate {
 
     fun addUser(username: String) {
         val ref = FirebaseDatabase.getInstance().getReference("pocketigl").child("sessions").child(currentSession).child("users")
-        val update = HashMap<String, kotlin.Int>()
-        update.put("id", 0)
-        ref.updateChildren(update as Map<String, kotlin.Int>)
+        val update = HashMap<String, String>()
+        update.put("name", "malwan")
+        ref.updateChildren(update as Map<String, String>)
     }
 
     fun joinSession(sessionId: String) {
