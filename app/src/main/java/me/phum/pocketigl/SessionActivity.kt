@@ -1,6 +1,7 @@
 package me.phum.pocketigl
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
@@ -16,7 +17,11 @@ import kotlinx.android.synthetic.main.activity_session.*
 import me.phum.pocketigl.lobby.LobbyFragment
 
 
-class SessionActivity : AppCompatActivity() {
+class SessionActivity : AppCompatActivity(), LobbyFragment.Delegate {
+    override fun onStartSession(sessionCode: String) {
+        startActivity(Intent(this, MapActivity::class.java))
+    }
+
     private val firebaseAuth = FirebaseAuth.getInstance()
     private var lobbyFragment : LobbyFragment? = null
     val context = this;

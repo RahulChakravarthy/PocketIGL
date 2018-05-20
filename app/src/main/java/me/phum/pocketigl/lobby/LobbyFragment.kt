@@ -1,14 +1,20 @@
 package me.phum.pocketigl.lobby
 
 
+import android.app.Activity
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_lobby.*
+import me.phum.pocketigl.MapActivity
 
 import me.phum.pocketigl.R
+import me.phum.pocketigl.Session
+import me.phum.pocketigl.SessionActivity
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -23,6 +29,7 @@ private const val ARG_SESSION_CODE = "arg_session_code"
 class LobbyFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private lateinit var sessionCode: String
+    private var delegate : Delegate? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +46,18 @@ class LobbyFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        if (activity is Delegate) {
+            delegate = activity as Delegate
+        }
         session_id.text = sessionCode
+
+        startButton.setOnClickListener {
+            delegate?.onStartSession(sessionCode)
+        }
+    }
+
+    interface Delegate {
+        fun onStartSession(sessionCode: String)
     }
 
     companion object {
