@@ -1,20 +1,31 @@
 package me.phum.pocketigl;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.Pair;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 
 public class MapActivity extends AppCompatActivity {
 
     private float[] lastLongTouchXY = new float[2];
     private ConstraintLayout constraintLayout;
     private Context context;
+    private ArrayList<Pair<Float, Float>> drawBuffer = new ArrayList<>();
+
+    Bitmap bitmap = Bitmap.createBitmap(500, 500, Bitmap.Config.ARGB_8888);
+    Canvas canvas = new Canvas(bitmap);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,8 +33,9 @@ public class MapActivity extends AppCompatActivity {
         setContentView(R.layout.activity_map);
         context = this;
         constraintLayout = (ConstraintLayout) findViewById(R.id.mainMap);
+        canvas.translate(-200, -300);
 
-        TouchImageView mainMap = (TouchImageView) findViewById(R.id.mainMapImg);
+        final TouchImageView mainMap = (TouchImageView) findViewById(R.id.mainMapImg);
         mainMap.setImageResource(R.drawable.de_mirage);
 
         View.OnTouchListener onLongTouch = new View.OnTouchListener() {
@@ -60,7 +72,49 @@ public class MapActivity extends AppCompatActivity {
                 return true;
             }
         };
-        mainMap.setOnLongClickListener(longClickListener);
-        mainMap.setOnTouchListener(onLongTouch);
+
+        View.OnTouchListener onTouchListener = new View.OnTouchListener(){
+
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                if(motionEvent.getAction() == MotionEvent.ACTION_MOVE) {
+                    Pair<Float, Float> p = debounceDrawBuffer(motionEvent.getX(), motionEvent.getY());
+
+                    if(p != null) {
+                        ImageView  i = findViewById(R.id.imageView);
+                        i.setImageBitmap(bitmap);
+                        Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+                        paint.setColor(Color.RED);
+                        canvas.drawCircle(p.first, p.second, 4, paint);
+                    }
+                }
+                return true;
+            }
+        };
+
+        //mainMap.setOnLongClickListener(longClickListener);
+        //mainMap.setOnTouchListener(onLongTouch);
+        mainMap.setOnTouchListener(onTouchListener);
+
+
+    }
+
+    Pair<Float, Float> debounceDrawBuffer(float newX, float newY) {
+        if(drawBuffer.isEmpty()) {
+            drawBuffer.add(new Pair(newX, newY));
+        } else {
+            float lastX = drawBuffer.get(drawBuffer.size() - 1).first;
+            float lastY = drawBuffer.get(drawBuffer.size() - 1).second;
+            float d = (float)Math.sqrt(Math.pow((newX - lastX), 2) + Math.pow((newY - lastY), 2));
+
+            if(d > 3) {
+                drawBuffer.add(new Pair(newX, newY));
+                Log.d("x,y: ", newX + " " + newY);
+
+                return new Pair(newX, newY);
+            }
+        }
+
+        return null;
     }
 }
